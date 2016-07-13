@@ -46,7 +46,7 @@ RUN yum install -y ffmpeg
 RUN yum install -y java
 
 # Dlib
-RUN yum install -y cmake boost-python python-devel boost boost-devel
+RUN yum install -y cmake boost-python python-devel boost boost-devel libstdc++-devel
 
 # ZBar
 RUN yum install -y zbar-devel python-devel
