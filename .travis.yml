@@ -1,0 +1,25 @@
+language: python
+
+sudo: false
+
+python:
+  - 2.7
+
+services:
+  - docker
+
+script:
+  # Upload to docker using the env variables in the settings if it's on the master branch
+  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
+      COMMIT=${TRAVIS_COMMIT::8} ;
+      REPO=abdealijk/file-metadata ;
+      docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
+      docker build -f Dockerfile -t $REPO:$COMMIT . ;
+      docker tag $REPO:$COMMIT $REPO:latest ;
+      docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER ;
+      docker images ;
+    fi
+# docker push $REPO ;
+
+notifications:
+  email: false
