@@ -1,5 +1,9 @@
 FROM centos:7
 MAINTAINER Abdeali JK <abdealikothari@gmail.com>
+#MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
+
+# LABEL author.user1="Abdeali JK <abdealikothari@gmail.com>" \
+#       author.user2="DrTrigon <dr.trigon@surfeu.ch>"
 
 # Initial update
 RUN yum -y update
@@ -46,7 +50,7 @@ RUN yum install -y ffmpeg
 RUN yum install -y java
 
 # Dlib
-RUN yum install -y cmake boost-python python-devel boost boost-devel libstdc++-devel
+RUN yum install -y cmake boost-python python-devel boost boost-devel libgcc glibc-devel
 
 # ZBar
 RUN yum install -y zbar-devel python-devel
@@ -70,4 +74,4 @@ RUN yum install -y libpng-devel
 RUN pip install -U cython
 
 # Install package
-RUN pip install /opt/file-metadata
+RUN pip install /opt/file-metadata --upgrade
