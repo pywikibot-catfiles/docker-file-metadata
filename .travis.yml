@@ -1,82 +1,22 @@
-language: python
-
 sudo: false
-
-python:
-  - 2.7
-
-os:
-  - linux
-
-cache:
-  pip: true
-  directories:
-    - /home/travis/miniconda
 
 services:
   - docker
 
-addons:
-  apt:
-    packages:
-      - libimage-exiftool-perl
-      - libav-tools
-      - libmagickwand-dev
-      - libzbar-dev
-
-before_install:
-  - export PATH="$HOME/miniconda/bin:$PATH"
-  # Download and install conda if necessary
-  - if ! ( conda -V && which conda ); then
-      if [[ "$TRAVIS_PYTHON_VERSION" == "2."* ]]; then
-        wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-      else
-        wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-      fi ;
-      bash miniconda.sh -f -b -p $HOME/miniconda;
-    fi
-  # Setup conda
-  - hash -r
-  - conda config --set always_yes true --set changeps1 false
-  - conda update -q conda
-  - conda info -a
-  # Create and activate the virtualenv
-  - if [ ! -e $HOME/miniconda/envs/py$TRAVIS_PYTHON_VERSION ]; then
-      conda create -q -n py$TRAVIS_PYTHON_VERSION python=$TRAVIS_PYTHON_VERSION pip;
-    fi
-  - source activate py$TRAVIS_PYTHON_VERSION
-  - if [[ "$(python --version 2>&1)" != *"$TRAVIS_PYTHON_VERSION"* ]]; then exit 1; fi
-
 install:
-  - conda install boost scipy ;
-  - conda install -c menpo opencv ;
-  - pip install -U pip;
-  # Install dlib from git (with pip) as there was an issue with libjpeg
-  # Which was solved and not yet released.
-  - pip install git+https://github.com/davisking/dlib.git@02f6da285149a61bc58728d9c5e77932151118b5#egg=dlib ;
-  - pip install -r test-requirements.txt ;
-  - pip install -v -e .
-  - pip uninstall -y file-metadata
-  - ls -l file_metadata/datafiles
+  - COMMIT=${TRAVIS_COMMIT::8} ;
+  - REPO=abdealijk/file-metadata ;
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
+  - docker build -f Dockerfile -t $REPO:$COMMIT . ;
+  - docker tag $REPO:$COMMIT $REPO:latest ;
+  - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER ;
 
 script:
-  - flake8 setup.py setupdeps.py file_metadata tests
-  - python -m pytest --cov ;
-  - python setup.py sdist bdist bdist_wheel
-  # Upload to docker using the env variables in the settings if it's on the master branch
-  - if [[ "$TRAVIS_BRANCH" == "ajk/docker" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
-      COMMIT=${TRAVIS_COMMIT::8} ;
-      REPO=abdealijk/file-metadata ;
-      docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
-      docker build -f Dockerfile -t $REPO:$COMMIT . ;
-      docker tag $REPO:$COMMIT $REPO:latest ;
-      docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER ;
-      docker images ;
+  - docker images ;
+  # Upload to docker if it's on the master branch
+  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
+      docker push $REPO ;
     fi
-# docker push $REPO ;
-
-after_script:
-  - bash <(curl -s https://codecov.io/bash)
 
 notifications:
   email: false
