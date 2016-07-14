@@ -1,6 +1,5 @@
 FROM centos:7
-MAINTAINER Abdeali JK <abdealikothari@gmail.com>
-#MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
+MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
 
 # LABEL author.user1="Abdeali JK <abdealikothari@gmail.com>" \
 #       author.user2="DrTrigon <dr.trigon@surfeu.ch>"
