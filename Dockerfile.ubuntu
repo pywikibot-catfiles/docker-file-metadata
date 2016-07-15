@@ -22,9 +22,6 @@ RUN apt-get install -y pkg-config
 # ExifTool
 RUN apt-get install -y exiftool
 
-# Numpy, Scipy
-RUN apt-get install -y gfortran libblas-dev libfreetype6-dev libjpeg-dev liblapack-dev libpng12-dev python-dev
-
 # Scikit Image, Pillow
 RUN apt-get install -y libtiff5-dev python-dev
 
