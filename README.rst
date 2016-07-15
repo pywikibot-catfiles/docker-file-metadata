@@ -101,7 +101,8 @@ to the ``pywikibot-catfiles/docker-file-metadata``
 `GitHub repo <https://github.com/pywikibot-catfiles/docker-file-metadata>`__
 or the ``pywikibot-catfiles/file-metadata``
 `GitHub repo <https://github.com/pywikibot-catfiles/file-metadata>`__ (by
-DockerHub link).
+DockerHub link `to image <https://hub.docker.com/r/pywikibotcatfiles/file-metadata/builds/>`__
+``pywikibotcatfiles/file-metadata``).
 
 Build status
 ------------
@@ -111,6 +112,8 @@ Build status
 
 .. image:: https://codecov.io/gh/AbdealiJK/file-metadata/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/AbdealiJK/file-metadata
+
+`:whale:(docker) <https://hub.docker.com/r/pywikibotcatfiles/docker-file-metadata/builds/>`__
 
 Credits
 -------
