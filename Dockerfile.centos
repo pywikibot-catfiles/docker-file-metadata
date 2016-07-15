@@ -15,10 +15,7 @@ RUN rpm --import http://li.nux.ro/download/nux/RPM-GPG-KEY-nux.ro && \
 # Basic packages
 RUN yum install -y \
   make \
-  git \
-  htop \
-  vim-enhanced \
-  wget
+  git
 
 # Pip - install latest version so that wheels are used
 RUN yum install -y python-pip && \
