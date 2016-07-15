@@ -44,8 +44,6 @@ RUN apt-get install -y cmake libboost-python-dev python-dev
 RUN apt-get install -y libzbar-dev python-dev
 
 # Pip - install latest version so that wheels are used
-#RUN wget https://bootstrap.pypa.io/get-pip.py && \
-#  python get-pip.py
 RUN apt-get install -y python-pip && \
   pip install -U pip
 
