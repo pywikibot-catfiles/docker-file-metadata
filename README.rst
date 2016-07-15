@@ -4,6 +4,9 @@ Introduction
 ``file-metadata`` is a python package that aims to analyze files and find
 metadata that can be used from it.
 
+For more information on the package visit `pywikibot-catfiles/file-metadata
+<https://github.com/pywikibot-catfiles/file-metadata>`__.
+
 Installation
 ============
 
