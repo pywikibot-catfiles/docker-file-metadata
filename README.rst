@@ -82,6 +82,28 @@ and then execute::
 
     $ python -m pytest
 
+Docker
+------
+
+To pull the ``latest`` docker image use::
+
+    $ sudo docker pull pywikibotcatfiles/docker-file-metadata
+
+Supported tags and respective ``Dockerfile`` links::
+
+* ``latest``, ``ubuntu-14.04`` (`docker/Dockerfile <https://github.com/pywikibot-catfiles/docker-file-metadata/blob/master/Dockerfile.ubuntu>`__)
+* ``ubuntu-16.04`` (`docker/Dockerfile <https://github.com/pywikibot-catfiles/docker-file-metadata/blob/master/Dockerfile.ubuntu-16.04>`__)
+* ``centos-7`` (`docker/Dockerfile <https://github.com/pywikibot-catfiles/docker-file-metadata/blob/master/Dockerfile.centos>`__)
+
+For more information about this image and its history, please see `the Build
+Details <https://hub.docker.com/r/pywikibotcatfiles/docker-file-metadata/builds/>`__
+(``pywikibotcatfiles/docker-file-metadata``). This image is updated via push
+to the ``pywikibot-catfiles/docker-file-metadata``
+`GitHub repo <https://github.com/pywikibot-catfiles/docker-file-metadata>`__
+or the ``pywikibot-catfiles/file-metadata``
+`GitHub repo <https://github.com/pywikibot-catfiles/file-metadata>`__ (by
+DockerHub link).
+
 Build status
 ------------
 
