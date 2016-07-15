@@ -65,6 +65,3 @@ RUN pip install -U cython
 
 # Install package
 RUN pip install /opt/file-metadata --upgrade
-
-# Test file-metadata import
-RUN python -c'import file_metadata; print(file_metadata.__version__)'
