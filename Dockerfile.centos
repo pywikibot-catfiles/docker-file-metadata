@@ -27,12 +27,6 @@ RUN yum install -y file-devel file-libs
 # ExifTool
 RUN yum install -y perl-Image-ExifTool
 
-# Numpy, Scipy
-RUN yum install -y gcc-gfortran blas freetype libjpeg-turbo-devel lapack libpng python-devel
-
-# Scikit Image, Pillow
-RUN yum install -y libtiff-devel python-devel
-
 # OpenCV
 RUN yum install -y opencv-python
 
@@ -46,7 +40,7 @@ RUN yum install -y ffmpeg
 RUN yum install -y java
 
 # Dlib
-RUN yum install -y cmake boost-python python-devel boost boost-devel gcc-c++ openblas-devel liblapack-devel
+RUN yum install -y cmake boost-python python-devel boost boost-devel gcc-gfortran gcc-c++ openblas-devel liblapack-devel
 
 # ZBar
 RUN yum install -y zbar-devel python-devel
