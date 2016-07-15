@@ -87,7 +87,7 @@ Docker
 
 To pull the ``latest`` docker image use::
 
-    $ sudo docker pull pywikibotcatfiles/docker-file-metadata
+    $ docker pull pywikibotcatfiles/docker-file-metadata
 
 Supported tags and respective ``Dockerfile`` links:
  * ``latest``, ``ubuntu-14.04`` (`docker/Dockerfile <https://github.com/pywikibot-catfiles/docker-file-metadata/blob/master/Dockerfile.ubuntu>`__)
