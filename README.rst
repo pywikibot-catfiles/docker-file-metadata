@@ -106,11 +106,8 @@ DockerHub link).
 Build status
 ------------
 
-.. image:: https://travis-ci.org/AbdealiJK/file-metadata.svg?branch=master
-   :target: https://travis-ci.org/AbdealiJK/file-metadata
-
-.. image:: https://codecov.io/gh/AbdealiJK/file-metadata/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/AbdealiJK/file-metadata
+.. image:: https://travis-ci.org/pywikibot-catfiles/docker-file-metadata.svg?branch=master
+   :target: https://travis-ci.org/pywikibot-catfiles/docker-file-metadata
 
 Credits
 -------
