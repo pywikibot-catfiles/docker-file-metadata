@@ -46,7 +46,7 @@ RUN yum install -y cmake boost-python python-devel boost boost-devel gcc-gfortra
 RUN yum install -y zbar-devel python-devel
 
 # Add the repository
-RUN git clone https://github.com/AbdealiJK/file-metadata.git /opt/file-metadata
+RUN git clone https://github.com/pywikibot-catfiles/file-metadata.git /opt/file-metadata
 
 # Test requirements
 RUN pip install -r /opt/file-metadata/test-requirements.txt
