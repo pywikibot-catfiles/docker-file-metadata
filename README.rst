@@ -111,6 +111,8 @@ Build status
 .. image:: https://travis-ci.org/pywikibot-catfiles/docker-file-metadata.svg?branch=master
    :target: https://travis-ci.org/pywikibot-catfiles/docker-file-metadata
 
+`:whale:(docker) <https://hub.docker.com/r/pywikibotcatfiles/docker-file-metadata/builds/>`__
+
 Credits
 -------
 
