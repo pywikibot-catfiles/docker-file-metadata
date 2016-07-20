@@ -98,7 +98,7 @@ Supported tags and respective ``Dockerfile`` links:
  * ``centos-7`` (`docker/Dockerfile <https://github.com/pywikibot-catfiles/docker-file-metadata/blob/master/Dockerfile.centos>`__)
 
 For more information about this image and its history, please see
-```pywikibotcatfiles/file-metadata`` <https://hub.docker.com/r/pywikibotcatfiles/file-metadata/builds/>`__.
+``pywikibotcatfiles/file-metadata`` (`on docker-hub <https://hub.docker.com/r/pywikibotcatfiles/file-metadata/builds/>`__).
 This image is updated via push to the ``pywikibot-catfiles/docker-file-metadata``
 `GitHub repo <https://github.com/pywikibot-catfiles/docker-file-metadata>`__
 or the ``pywikibot-catfiles/file-metadata``
