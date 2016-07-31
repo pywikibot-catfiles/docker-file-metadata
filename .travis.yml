@@ -2,6 +2,7 @@ sudo: false
 
 env:
   - DOCKERFILE=Dockerfile.ubuntu DOCKERTAG=ubuntu-14.04
+  - DOCKERFILE=Dockerfile.ubuntu-16.04 DOCKERTAG=ubuntu-16.04
   - DOCKERFILE=Dockerfile.centos DOCKERTAG=centos-7
 
 services:
@@ -9,19 +10,23 @@ services:
 
 install:
   - COMMIT=${TRAVIS_COMMIT::8} ;
-  - REPO=abdealijk/file-metadata ;
+  # - REPO=abdealijk/file-metadata ;
+  - REPO=pywikibotcatfiles/file-metadata ;
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
   - docker build -f $DOCKERFILE -t $REPO:$COMMIT . ;
   - docker tag $REPO:$COMMIT $REPO:$DOCKERTAG ;
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER ;
+  - if [[ "$DOCKERTAG" == "ubuntu-14.04" ]] ; then
+      docker tag $REPO:$COMMIT $REPO:latest ;
+    fi
 
 script:
   - docker images ;
   - docker run -w /opt/file-metadata -t --rm $REPO:$COMMIT python -m pytest ;
   # Upload to docker if it's on the master branch
-  # - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
-  #     docker push $REPO ;
-  #   fi
+  - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
+      docker push $REPO ;
+    fi
 
 notifications:
   email: false
