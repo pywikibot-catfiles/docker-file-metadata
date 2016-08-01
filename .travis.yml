@@ -20,11 +20,11 @@ install:
   - if [[ "$DOCKERTAG" == "ubuntu-14.04" ]] ; then
       docker tag $REPO:$COMMIT $REPO:latest ;
     fi
-  - docker rmi $REPO:$COMMIT
 
 script:
   - docker images ;
   - docker run -w /opt/file-metadata -t --rm $REPO:$COMMIT python -m pytest ;
+  - docker rmi $REPO:$COMMIT
   # Upload to docker if it's on the master branch
   - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
       docker push $REPO ;
