@@ -7,12 +7,6 @@ MAINTAINER DrTrigon <dr.trigon@surfeu.ch>
 # Initial update
 RUN apt-get -y update
 
-# Basic packages
-RUN apt-get install -y \
-  build-essential \
-  make \
-  git
-
 # Pip - install latest version so that wheels are used
 RUN apt-get install -y python-pip && \
   pip install -U pip
@@ -27,7 +21,7 @@ RUN apt-get install -y exiftool
 RUN apt-get install -y python-opencv opencv-data
 
 # Image Magick / wand
-RUN apt-get install -y libmagickwand-dev python-dev
+RUN apt-get install -y libmagickwand-dev
 
 # avprobe / ffprobe
 RUN apt-get install -y libav-tools
@@ -42,6 +36,7 @@ RUN apt-get install -y cmake libboost-python-dev python-dev
 RUN apt-get install -y libzbar-dev python-dev
 
 # Add the repository
+RUN apt-get install -y git
 RUN git clone https://github.com/pywikibot-catfiles/file-metadata.git /opt/file-metadata
 
 # Test requirements
