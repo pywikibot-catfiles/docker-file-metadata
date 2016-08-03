@@ -58,7 +58,7 @@ RUN yum install -y ImageMagick-c++ && \
   rpm -Uvh https://copr-be.cloud.fedoraproject.org/results/mmraka/epel7-addons/epel-7-x86_64/zbar-0.10-15.fc19/zbar-0.10-15.el7.centos.x86_64.rpm && \
   rpm -Uvh https://copr-be.cloud.fedoraproject.org/results/mmraka/epel7-addons/epel-7-x86_64/zbar-0.10-15.fc19/zbar-devel-0.10-15.el7.centos.x86_64.rpm
 
-RUN pip install pip==7.0.0
+#RUN pip install pip==7.0.0
 
 RUN yum install -y libpng-devel
 RUN pip install -U cython

@@ -43,14 +43,10 @@ RUN apt-get install -y cmake libboost-python-dev python-dev
 RUN apt-get install -y libzbar-dev python-dev
 
 # Add the repository
-RUN git clone https://github.com/AbdealiJK/file-metadata.git /opt/file-metadata
+RUN git clone https://github.com/pywikibot-catfiles/file-metadata.git /opt/file-metadata
 
 # Test requirements
 RUN pip install -r /opt/file-metadata/test-requirements.txt
 
 # Install package
 RUN pip install /opt/file-metadata --upgrade
-
-# Temporary bugfix until gone upstream to file-metadata:master
-ADD https://gist.githubusercontent.com/drtrigon/b7d367514745715fff332b652349f222/raw/dba339bedb0b0e939e62652aa29446a078fda9a6/file-metadata.diff /opt/file-metadata/
-RUN cd /opt/file-metadata/ && patch -p0 < file-metadata.diff
