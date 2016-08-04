@@ -6,6 +6,7 @@ env:
   - DOCKERFILE=Dockerfile.ubuntu DOCKERTAG=ubuntu-14.04
   - DOCKERFILE=Dockerfile.ubuntu-16.04 DOCKERTAG=ubuntu-16.04
   - DOCKERFILE=Dockerfile.centos DOCKERTAG=centos-7
+  - DOCKERFILE=Dockerfile.debian DOCKERTAG=debian-jessie
 
 services:
   - docker
