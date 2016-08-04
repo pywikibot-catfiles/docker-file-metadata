@@ -64,4 +64,5 @@ RUN yum install -y libpng-devel
 RUN pip install -U cython
 
 # Install package
-RUN pip install -e /opt/file-metadata --upgrade
+RUN pip install /opt/file-metadata --upgrade
+RUN pip install -e /opt/file-metadata
