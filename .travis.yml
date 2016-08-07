@@ -15,11 +15,12 @@ services:
 install:
   - COMMIT=${TRAVIS_COMMIT::8} ;
   - REPO=pywikibotcatfiles/file-metadata ;
+  - LATEST=ubuntu-14.04 ;
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS ;
   - docker build -f $DOCKERFILE -t $REPO:$COMMIT . ;
   - docker tag $REPO:$COMMIT $REPO:$DOCKERTAG ;
   # - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER ;
-  - if [[ "$DOCKERTAG" == "ubuntu-14.04" ]] ; then
+  - if [[ "$DOCKERTAG" == "$LATEST" ]] ; then
       docker tag $REPO:$COMMIT $REPO:latest ;
     fi
 
@@ -30,6 +31,15 @@ script:
   # Upload to docker if it's on the master branch
   - if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
       docker push $REPO ;
+    fi
+
+after_success:
+  - |-
+    if [[ "$TRAVIS_BRANCH" == "master" && "$TRAVIS_PULL_REQUEST" == "false" ]] ; then
+      if [[ "$DOCKERTAG" == "$LATEST" ]] ; then
+        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/drtrigon%2Fdocker-file-metadata-wikibot/requests ;
+        curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json" -H "Travis-API-Version: 3" -H "Authorization: token $TRAVIS_TOKEN" -d "{\"request\": {\"branch\":\"master\"}}" https://api.travis-ci.org/repo/drtrigon%2Finstall-file-metadata-wikibot/requests ;
+      fi ;
     fi
 
 notifications:
